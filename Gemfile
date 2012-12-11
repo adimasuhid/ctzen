@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'bootstrap-sass', '2.1'
-gem 'bcrypt-ruby', '3.0.1'
+gem 'bcrypt-ruby'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -25,6 +25,7 @@ gem 'jquery-rails', '2.0.2'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'rb-fsevent', '0.9.1', :require => false
+  gem 'factory_girl_rails', '4.1.0'
   gem 'growl', '1.0.3'
 end 
 

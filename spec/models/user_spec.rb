@@ -16,7 +16,6 @@ describe User do
   before do
   @user = User.new(name: "Example User", email: "user@example.com", 
                    password: "foobar", password_confirmation: "foobar")
-  end
 
   subject { @user }
 
@@ -104,4 +103,5 @@ describe User do
       specify { user_for_invalid_password.should be_false }
     end
   end 
+end
 end
