@@ -19,6 +19,7 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/', to: 'static_pages#home'
+  match '/news', to: 'static_pages#news'
 
 
   # The priority is based upon order of creation:

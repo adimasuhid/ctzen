@@ -1,6 +1,7 @@
-@import "bootstrap";
-
+@import 'bootstrap';
 /* universal */
+
+
 $grayMediumLight: #eaeaea;
 
 html {
@@ -56,7 +57,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -248,4 +249,3 @@ aside {
     margin-bottom: 5px;
   }
 }
-
