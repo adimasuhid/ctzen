@@ -74,7 +74,6 @@ describe "Authentication" do
           fill_in "Email",    with: user.email
           fill_in "Password", with: user.password
           click_button "Sign in"
-        end
 
         describe "after signing in" do
 
@@ -82,7 +81,19 @@ describe "Authentication" do
             page.should have_selector('title', text: 'Edit user')
           end
         end
-      end
+
+        describe "in the Users controller" do
+           
+          describe "visiting the following page" do
+             before { visit following_user_path(user) }
+             it { should have_selector('title', text: 'Sign in') }
+           end
+
+           describe "visiting the followers page" do
+             before { visit followers_user_path(user) }
+             it { should have_selector('title', text: 'Sign in') }
+           end
+        end
 
       describe "in the Microposts controller" do
 
@@ -90,12 +101,14 @@ describe "Authentication" do
           before { post microposts_path }
           specify { response.should redirect_to(signin_path) }
         end
+      end
 
         describe "submitting to the destroy action" do
           before { delete micropost_path(FactoryGirl.create(:micropost)) }
           specify { response.should redirect_to(signin_path) }
         end
       end
+    end
 
       describe "in the Users controller" do
         
