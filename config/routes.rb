@@ -4,6 +4,13 @@ SampleApp::Application.routes.draw do
       get :following, :followers
     end
   end
+  
+  resources :direct_messages do
+    collection do
+    get :received, :sent
+    end
+  end
+
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]

@@ -1,0 +1,11 @@
+<h1 class="hero-unit"> Sent Messages </h1>
+<ul class="users">
+<% @direct_messages.each do |dm| %>
+  <li>
+    <%= link_to gravatar_for(dm.recipient), dm.recipient %>
+    <%= link_to dm.recipient.name, dm.recipient %>:
+    <%= dm.content %>
+    </li>
+  <% end %>
+</ul>
+
