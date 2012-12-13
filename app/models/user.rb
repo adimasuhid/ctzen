@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
 
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :username
   has_secure_password
   has_many :microposts, :dependent => :destroy
   has_many :relationships, foreign_key: "follower_id", :dependent => :destroy
@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :replies, :class_name => 'Recipient', :dependent => :destroy
+  has_many :received_replies, :through => :replies, :source => 'micropost'
 
 
   before_save { |user| user.email = email.downcase }
@@ -17,12 +19,18 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  UNAME_REGEX = /^[a-z](\w*[a-z0-9])*$/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  
+ 
+  validates :username, :presence => true, 
+                       :length => { :maximum => 20 },
+                       :format => { :with => UNAME_REGEX },
+                       :uniqueness => { :case_sensitive => false }
+
   def feed
      Micropost.from_users_followed_by(self)
   end

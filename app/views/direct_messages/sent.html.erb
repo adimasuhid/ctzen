@@ -5,6 +5,10 @@
     <%= link_to gravatar_for(dm.recipient), dm.recipient %>
     <%= link_to dm.recipient.name, dm.recipient %>:
     <%= dm.content %>
+    <div class="timestamp">
+      Sent <%= time_ago_in_words(dm.created_at) %> ago.
+    </div>
+
     </li>
   <% end %>
 </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121213040522) do
+ActiveRecord::Schema.define(:version => 20121213074027) do
 
   create_table "direct_messages", :force => true do |t|
     t.integer  "sender_id"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20121213040522) do
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
+  create_table "recipients", :force => true do |t|
+    t.integer  "micropost_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -52,8 +59,10 @@ ActiveRecord::Schema.define(:version => 20121213040522) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
+    t.string   "username"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

@@ -4,6 +4,7 @@ class MicropostsController < ApplicationController
   before_filter :process_direct_messages, :only => :create
 
 
+
   def index
   end
 

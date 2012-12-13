@@ -4,11 +4,9 @@
 <h1>
   <%= current_user.name %>
 </h1>
-<span>
-  <%= link_to "view my profile", current_user %>
-</span>
 <span><%= current_user.email %><span>
-    <br/>
     <span>
-      <%= pluralize(current_user.microposts.count, "micropost") %>
+      <p>
+        <font color="#0099ff">@<%= current_user.username %></font>
+      </p>
     </span>
