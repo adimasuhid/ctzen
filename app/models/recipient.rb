@@ -3,5 +3,7 @@ class Recipient < ActiveRecord::Base
 
   belongs_to :micropost
   belongs_to :user
+  default_scope order: 'recipients.created_at DESC'
+
 
 end

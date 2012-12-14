@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :replies, :class_name => 'Recipient', :dependent => :destroy
+
   has_many :received_replies, :through => :replies, :source => 'micropost'
 
 
